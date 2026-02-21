@@ -66,7 +66,7 @@ const Hero: React.FC<HeroProps> = ({ data, onOpenContact, onOpenLogin }) => {
           </motion.div>
 
           <motion.h1
-            className="text-6xl md:text-9xl font-black mb-8 tracking-tighter leading-[0.85]"
+            className="text-5xl sm:text-6xl md:text-9xl font-black mb-8 tracking-tighter leading-[0.9] md:leading-[0.85]"
           >
             <motion.span custom={1} initial="hidden" animate="visible" variants={textVariants} className="block text-white drop-shadow-2xl">Financial</motion.span>
             <motion.span 
@@ -79,7 +79,7 @@ const Hero: React.FC<HeroProps> = ({ data, onOpenContact, onOpenLogin }) => {
 
           <motion.p
             custom={3} initial="hidden" animate="visible" variants={textVariants}
-            className="text-lg md:text-2xl text-slate-300 mb-16 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-md"
+            className="text-base sm:text-lg md:text-2xl text-slate-300 mb-12 md:mb-16 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-md px-4"
           >
             Modernizing growing businesses with <span className="text-white font-bold">expert bookkeeping</span> and high-impact virtual accounting partnerships.
           </motion.p>

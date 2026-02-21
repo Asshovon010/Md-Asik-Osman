@@ -1320,14 +1320,23 @@ const InputGroup = ({ label, value, onChange, type = "text", icon }: { label: st
     </div>
 );
 
-const StatCard = ({ label, value, icon, color, onClick }: { label: string, value: string | number, icon: any, color: string, onClick?: () => void }) => (
-    <div onClick={onClick} className={`bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-4 transition-all ${onClick ? 'cursor-pointer hover:shadow-md hover:scale-[1.02]' : ''}`}>
-        <div className={`p-4 rounded-xl bg-${color}-50 dark:bg-${color}-900/10 text-${color}-500`}>{icon}</div>
-        <div>
-            <p className="text-xs font-bold uppercase text-slate-400 tracking-wider">{label}</p>
-            <h4 className="text-2xl font-black text-slate-900 dark:text-white">{value}</h4>
+const StatCard = ({ label, value, icon, color, onClick }: { label: string, value: string | number, icon: any, color: 'blue' | 'orange' | 'purple' | 'green', onClick?: () => void }) => {
+    const colorClasses = {
+        blue: 'bg-blue-50 dark:bg-blue-900/10 text-blue-500',
+        orange: 'bg-orange-50 dark:bg-orange-900/10 text-orange-500',
+        purple: 'bg-purple-50 dark:bg-purple-900/10 text-purple-500',
+        green: 'bg-green-50 dark:bg-green-900/10 text-green-500',
+    };
+
+    return (
+        <div onClick={onClick} className={`bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-4 transition-all ${onClick ? 'cursor-pointer hover:shadow-md hover:scale-[1.02]' : ''}`}>
+            <div className={`p-4 rounded-xl ${colorClasses[color]}`}>{icon}</div>
+            <div>
+                <p className="text-xs font-bold uppercase text-slate-400 tracking-wider">{label}</p>
+                <h4 className="text-2xl font-black text-slate-900 dark:text-white">{value}</h4>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 export default AdminPanel;

@@ -318,7 +318,7 @@ const ClientPanel: React.FC<ClientPanelProps> = ({
       <div className="fixed bottom-10 right-10 z-40">
         <AnimatePresence>
             {isChatOpen && (
-                <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="mb-6 w-[380px] h-[550px] bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden">
+                <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="mb-6 w-[calc(100vw-3rem)] sm:w-[380px] h-[550px] max-h-[70vh] bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden origin-bottom-right">
                     <div className="p-6 bg-slate-900 text-white flex justify-between items-center">
                         <h3 className="font-black flex items-center gap-3 uppercase tracking-widest text-xs">
                             <MessageSquare size={18} className="text-blue-500" /> Account Support

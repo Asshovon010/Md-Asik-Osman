@@ -4,6 +4,8 @@ import { MessageCircle, X, Send, Sparkles, Loader2, Minimize2 } from 'lucide-rea
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChatMessage, ResumeData } from '../types';
 
+import { sendMessageToGemini } from '../services/geminiService';
+
 interface ChatWidgetProps {
     data: ResumeData;
 }
@@ -45,18 +47,24 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ data }) => {
     if (!input.trim() || isLoading) return;
 
     const userMessage: ChatMessage = { role: 'user', text: input };
+    // Optimistically update UI
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = input;
     setInput('');
     setIsLoading(true);
 
-    // Simple response simulation as backend is disabled
-    setTimeout(() => {
+    try {
+        const responseText = await sendMessageToGemini(messages, currentInput, data);
+        setMessages(prev => [...prev, { role: 'model', text: responseText }]);
+    } catch (error) {
+        console.error("Error getting response:", error);
         setMessages(prev => [...prev, { 
             role: 'model', 
-            text: "Thank you for your question! I'm a demo assistant. For specific inquiries, please use the contact form or email directly." 
+            text: "I'm having trouble connecting right now. Please try again later." 
         }]);
+    } finally {
         setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
